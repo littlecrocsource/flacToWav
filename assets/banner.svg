@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 200" width="900" height="200">
+  <!-- flac2wav banner — Nintendo palette -->
+  <rect width="900" height="200" rx="24" fill="#E60012"/>
+  <rect x="8" y="8" width="884" height="184" rx="18" fill="none" stroke="#FFFFFF" stroke-width="3" opacity="0.5"/>
+  <!-- waveform strip -->
+  <g fill="#FFFFFF" opacity="0.9">
+    <rect x="620" y="80"  width="10" height="40" rx="5"/>
+    <rect x="638" y="62"  width="10" height="76" rx="5"/>
+    <rect x="656" y="44"  width="10" height="112" rx="5"/>
+    <rect x="674" y="70"  width="10" height="60" rx="5"/>
+    <rect x="692" y="52"  width="10" height="96" rx="5"/>
+    <rect x="710" y="76"  width="10" height="48" rx="5"/>
+    <rect x="728" y="58"  width="10" height="84" rx="5"/>
+    <rect x="746" y="84"  width="10" height="32" rx="5"/>
+    <rect x="764" y="66"  width="10" height="68" rx="5"/>
+    <rect x="782" y="48"  width="10" height="104" rx="5"/>
+    <rect x="800" y="74"  width="10" height="52" rx="5"/>
+    <rect x="818" y="60"  width="10" height="80" rx="5"/>
+  </g>
+  <text x="60" y="105" font-family="Verdana, Geneva, sans-serif" font-size="58" font-weight="bold" fill="#FFFFFF">flac2wav</text>
+  <text x="62" y="150" font-family="Verdana, Geneva, sans-serif" font-size="20" fill="#FFFFFF" opacity="0.95">FLAC → WAV · LPCM 16-bit / 44.1 kHz · Pioneer DEH-80PRS</text>
+</svg>

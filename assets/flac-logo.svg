@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220">
+  <!-- FLAC codec representation — Nintendo palette -->
+  <circle cx="110" cy="110" r="104" fill="#E60012"/>
+  <circle cx="110" cy="110" r="92" fill="#FFFFFF"/>
+  <circle cx="110" cy="110" r="80" fill="#E60012"/>
+  <!-- stylized reel / lossless rings -->
+  <circle cx="110" cy="110" r="56" fill="none" stroke="#FFFFFF" stroke-width="6"/>
+  <circle cx="110" cy="110" r="38" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-dasharray="10 7"/>
+  <text x="110" y="122" text-anchor="middle"
+        font-family="Verdana, Geneva, sans-serif" font-size="34" font-weight="bold"
+        fill="#FFFFFF" letter-spacing="1">fLaC</text>
+  <text x="110" y="150" text-anchor="middle"
+        font-family="Verdana, Geneva, sans-serif" font-size="13"
+        fill="#FFFFFF" letter-spacing="3">LOSSLESS</text>
+</svg>
