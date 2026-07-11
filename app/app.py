@@ -22,6 +22,15 @@ STATIC = Path(__file__).resolve().parent / "static"
 # --------------------------------------------------------------------------- #
 # ffmpeg helpers
 # --------------------------------------------------------------------------- #
+def effective_outdir(raw: str) -> Path:
+    """Resolve the destination and ensure files land in a `wav` subfolder.
+    Selecting a folder that is already named `wav` won't nest a second one."""
+    d = Path(os.path.expanduser(raw or str(Path.home()))).resolve()
+    if d.name.lower() != "wav":
+        d = d / "wav"
+    return d
+
+
 def require_tools():
     for tool in ("ffmpeg", "ffprobe"):
         if shutil.which(tool) is None:
@@ -202,7 +211,7 @@ class Handler(SimpleHTTPRequestHandler):
         if self.path == "/api/defaults":
             home = Path.home()
             return self._json({"home": str(home),
-                               "outdir": str(home / "Music" / "wav16")})
+                               "outdir": str(home / "Music")})
         if self.path == "/api/progress":
             return self._json(JOB.status() if JOB else {"running": False, "items": []})
         return super().do_GET()
@@ -252,9 +261,9 @@ class Handler(SimpleHTTPRequestHandler):
             files = data.get("files", [])
             if not files:
                 return self._json({"error": "nothing to convert"}, 400)
-            outdir = Path(os.path.expanduser(data.get("outdir") or "")).resolve()
+            outdir = effective_outdir(data.get("outdir"))
             JOB = Job(files, outdir, bool(data.get("overwrite")))
-            return self._json({"ok": True})
+            return self._json({"ok": True, "outdir": str(outdir)})
 
         if self.path == "/api/cancel":
             if JOB:
@@ -262,7 +271,7 @@ class Handler(SimpleHTTPRequestHandler):
             return self._json({"ok": True})
 
         if self.path == "/api/reveal":
-            folder = Path(os.path.expanduser(data.get("path") or "")).resolve()
+            folder = effective_outdir(data.get("path"))
             if folder.is_dir():
                 opener = ("open" if sys.platform == "darwin" else "xdg-open")
                 subprocess.Popen([opener, str(folder)],

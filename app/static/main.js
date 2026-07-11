@@ -12,6 +12,11 @@ const api = async (path, body) => {
   return res.json();
 };
 
+// files always land in a `wav` subfolder of the chosen destination
+const withWav = (p) => (p.replace(/\/+$/, "").split("/").pop().toLowerCase() === "wav"
+  ? p.replace(/\/+$/, "") : p.replace(/\/+$/, "") + "/wav");
+const showDest = (p) => withWav(p).replace(state.home, "~");
+
 const state = {
   queue: [],            // {path, name, folder, valid, rate, bits, size, selected}
   outdir: "",
@@ -227,7 +232,7 @@ async function poll() {
   const d = await api("/api/defaults");
   state.home = d.home;
   state.outdir = d.outdir;
-  $("destPath").textContent = d.outdir.replace(d.home, "~");
+  $("destPath").textContent = showDest(d.outdir);
 
   $("btnAddFiles").addEventListener("click", async () => {
     const picked = await openBrowser("files");
@@ -249,7 +254,7 @@ async function poll() {
     const folder = await openBrowser("folder", state.outdir.replace(/\/[^/]*$/, ""));
     if (folder) {
       state.outdir = folder;
-      $("destPath").textContent = folder.replace(state.home, "~");
+      $("destPath").textContent = showDest(folder);
     }
   });
   $("btnConvert").addEventListener("click", startConvert);
