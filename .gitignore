@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+wav16/
+.DS_Store

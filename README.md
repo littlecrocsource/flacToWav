@@ -1,112 +1,81 @@
 <div align="center">
 
-<img src="assets/banner.svg" alt="flac2wav banner" width="820">
+<img src="docs/banner.png" alt="FLAC to WAV — marquee and neon banner" width="820">
 
 <br><br>
 
-![FLAC](https://img.shields.io/badge/input-FLAC-E60012?style=for-the-badge&labelColor=1F1F1F)
-![WAV](https://img.shields.io/badge/output-WAV_LPCM-E60012?style=for-the-badge&labelColor=1F1F1F)
-![16bit](https://img.shields.io/badge/16--bit-44.1_kHz-FFFFFF?style=for-the-badge&labelColor=E60012)
-![Bash](https://img.shields.io/badge/bash-%E2%89%A54.0-E60012?style=for-the-badge&labelColor=1F1F1F&logo=gnubash&logoColor=white)
-![License](https://img.shields.io/badge/license-MIT-E60012?style=for-the-badge&labelColor=1F1F1F)
+![FLAC](https://img.shields.io/badge/input-FLAC-FF9E2E?style=for-the-badge&labelColor=141210)
+![WAV](https://img.shields.io/badge/output-WAV_LPCM-2EE065?style=for-the-badge&labelColor=141210)
+![16bit](https://img.shields.io/badge/16--bit-44.1_kHz-141210?style=for-the-badge&labelColor=2EE065)
+![Python](https://img.shields.io/badge/python-%E2%89%A53.8-FF9E2E?style=for-the-badge&labelColor=141210&logo=python&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-2EE065?style=for-the-badge&labelColor=141210)
 
-**A safe, interactive Bash converter that turns lossless FLAC into car-stereo-ready WAV.**
-Built for the **Pioneer DEH-80PRS**, works for any head unit limited to LPCM 16-bit WAV.
+**Convert lossless FLAC into car-stereo-ready WAV — as a web app or a shell one-liner.**
+Built for the **Pioneer DEH-80PRS**; works for any head unit limited to LPCM 16-bit WAV.
 
 </div>
 
 ---
 
-<table align="center">
-<tr>
-<td align="center" width="280">
-  <img src="assets/flac-logo.svg" alt="FLAC codec" width="140"><br><br>
-  <b>FLAC</b> · Free Lossless Audio Codec<br>
-  <sub>any bit depth · any sample rate · cover art OK</sub>
-</td>
-<td align="center" width="80"><h1>→</h1></td>
-<td align="center" width="280">
-  <img src="assets/wav-logo.svg" alt="WAV codec" width="140"><br><br>
-  <b>WAV</b> · LPCM <code>pcm_s16le</code><br>
-  <sub>16-bit · 44.1 kHz · triangular dither · tags kept</sub>
-</td>
-</tr>
-</table>
+## 🎛️ Why
 
----
+The DEH-80PRS plays WAV from USB/SD **only as LPCM 8/16-bit, 16–48 kHz** — no FLAC,
+no 24-bit, nothing above 48 kHz (per the official operation manual). Both tools here
+convert to the best format the deck accepts: **16-bit / 44.1 kHz PCM**, with metadata
+kept, cover art stripped safely, and triangular-HP dither on 24-bit downconversions.
 
-## 🎮 Why
-
-The DEH-80PRS plays WAV from USB/SD **only as LPCM 8/16-bit, 16–48 kHz**. No FLAC, no 24-bit, nothing above 48 kHz (per the official operation manual). This script converts your FLAC library to the highest format the deck accepts: **16-bit / 44.1 kHz PCM**.
-
-## ⭐ Features
-
-| | |
-|---|---|
-| 🕹️ **Interactive picker** | Numbered menu — pick `1 3 5-8`, `a` for all, `q` to quit |
-| 🛡️ **Real file-type check** | Magic bytes + ffprobe; a renamed `.txt` can't crash the run |
-| 🎨 **Cover-art safe** | Embedded artwork is stripped (`-vn`) instead of breaking the WAV muxer |
-| 🎚️ **Proper downconversion** | Forced `pcm_s16le` with triangular-HP dither for 24-bit sources |
-| 🏷️ **Metadata preserved** | Title/artist tags carried into the WAV |
-| ♻️ **No accidental overwrites** | Existing files skipped unless you pass `-y` |
-| 📊 **Run summary** | `done / skipped / failed` counts, meaningful exit codes |
-
-## 🔧 Requirements
-
-`bash` ≥ 4.0 and `ffmpeg` (includes `ffprobe`):
+## 🖥️ The app
 
 ```bash
-sudo apt install ffmpeg        # Debian/Ubuntu
-sudo dnf install ffmpeg        # Fedora
-brew install ffmpeg            # macOS
+cd app
+python3 app.py          # opens http://127.0.0.1:8574 in your browser
 ```
 
-## 🚀 Usage
+No pip packages needed — Python 3.8+ standard library only. `ffmpeg`/`ffprobe`
+must be installed (`sudo apt install ffmpeg`).
+
+- Queue FLACs from **any number of folders** (files or whole folders)
+- Every file is validated by magic bytes + ffprobe — a renamed `.txt` can't crash a run
+- One output destination — point it straight at your USB stick
+- Live per-file and overall progress, cancel anytime, name collisions get `(2)` suffixes
+- Skips existing WAVs unless you tick *overwrite*
+- Marquee-bulb FLAC / neon WAV theme with the rotating defective-bulb animation
+
+## ⌨️ The CLI
 
 ```bash
-chmod +x flac2wav.sh
-
 ./flac2wav.sh                  # interactive picker in current folder
-./flac2wav.sh --all            # convert every .flac in the folder
+./flac2wav.sh --all            # convert every .flac here
 ./flac2wav.sh song.flac        # convert specific file(s)
 ./flac2wav.sh -y --all         # overwrite existing .wav files
 ./flac2wav.sh -d ~/Music --all # work in another folder
-./flac2wav.sh -h               # help
 ```
 
-Output lands in `wav16/` next to your FLACs.
+Output lands in `wav16/` next to your FLACs. Same validation and ffmpeg
+settings as the app.
 
-```
-Found 4 FLAC file(s) in /home/you/Music:
-
-    1) art track.flac
-    2) hi_res.flac
-    3) live set.flac
-    4) normal.flac
-
-Select: numbers and ranges (e.g. 1 3 5-8), a = all, q = quit
-choice> 1-2 4
-
-3 file(s) queued -> wav16/
-Continue? [y/N]: y
-```
-
-## 📻 DEH-80PRS compatibility notes
+## 📻 DEH-80PRS notes
 
 | Format | USB/SD support |
 |---|---|
-| WAV LPCM 16-bit / 44.1 kHz | ✅ **this script's output** |
+| WAV LPCM 16-bit / 44.1 kHz | ✅ **what these tools produce** |
 | WAV LPCM 8/16-bit, 16–48 kHz | ✅ |
 | WAV 24-bit or > 48 kHz | ❌ |
 | FLAC | ❌ (never added in firmware) |
 
-> 💡 The deck displays only the **first 32 characters** of a filename — keep names short on the USB stick.
+> 💡 The deck displays only the **first 32 characters** of a filename — keep names short.
+
+## 📁 Layout
+
+```
+flac2wav/
+├── flac2wav.sh          # CLI converter
+├── app/
+│   ├── app.py           # local web server (stdlib only)
+│   └── static/          # UI + SVG art (banner, graffiti wall, icon)
+└── docs/banner.png      # README hero
+```
 
 ## 📄 License
 
 MIT — do whatever you want, no warranty.
-
-<div align="center">
-<br>
-<sub>Not affiliated with Nintendo, Pioneer, or Xiph.Org — color palette and codec marks are fan-made representations.</sub>
-</div>

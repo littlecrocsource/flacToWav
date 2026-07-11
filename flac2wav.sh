@@ -18,7 +18,7 @@ set -u -o pipefail
 # ---------- colors (disabled when not on a terminal) -------------------------
 if [[ -t 1 ]]; then
     C_OK=$'\e[1;92m'  C_ERR=$'\e[1;91m'  C_WARN=$'\e[1;93m'
-    C_INFO=$'\e[1;96m' C_MAG=$'\e[1;95m' C_GRN=$'\e[1;32m' C_END=$'\e[0m'
+    C_INFO=$'\e[1;96m' C_MAG=$'\e[1;95m' C_GRN=$'\e[5;1;32m' C_END=$'\e[0m'
 else
     C_OK='' C_ERR='' C_WARN='' C_INFO='' C_MAG='' C_GRN='' C_END=''
 fi

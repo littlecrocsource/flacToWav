@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <!-- App icon: music note converting to digital bits — sketch style, Claude pastel palette -->
+  <rect width="120" height="120" rx="27" fill="#F0EEE6"/>
+  <rect x="4" y="4" width="112" height="112" rx="23" fill="none" stroke="#C9C4B5" stroke-width="2"/>
+  <!-- note (analog) -->
+  <g fill="none" stroke="#D97757" stroke-width="5" stroke-linecap="round">
+    <ellipse cx="34" cy="76" rx="12" ry="9" transform="rotate(-15 34 76)" fill="#D97757" fill-opacity="0.25"/>
+    <path d="M45 72 v-40 q 16 3 24 13"/>
+  </g>
+  <!-- conversion spark -->
+  <path d="M60 60 h 10 m 4 0 h 4" stroke="#8A8578" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <path d="M74 54 l 8 6 l -8 6" stroke="#8A8578" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- bits (digital) -->
+  <g font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-weight="700" font-size="21" fill="#7FB5A8">
+    <text x="86" y="52">1</text>
+    <text x="99" y="66">0</text>
+    <text x="86" y="80">1</text>
+  </g>
+</svg>

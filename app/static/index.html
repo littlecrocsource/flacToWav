@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>flac2wav — FLAC → WAV for Pioneer DEH-80PRS</title>
+<link rel="icon" href="assets/app-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="window">
+  <img class="banner" src="assets/tube-banner.svg" alt="FLAC to WAV">
+
+  <main class="panes">
+    <section class="pane" id="queuePane">
+      <header class="pane-head">
+        <span id="queueTitle">QUEUE</span>
+        <span class="head-actions">
+          <button class="pill ghost sm" id="btnAddFiles">＋ Add files</button>
+          <button class="pill ghost sm" id="btnAddFolder">📁 Add folder</button>
+        </span>
+      </header>
+      <div id="queueList" class="list">
+        <div class="empty" id="queueEmpty">
+          <p>Queue is empty</p>
+          <p class="dim">Add FLAC files from any folders — they convert into one destination.</p>
+        </div>
+      </div>
+      <footer class="pane-foot">
+        <button class="pill ghost sm" id="btnSelectAll">Select all</button>
+        <button class="pill ghost sm" id="btnClear">Clear queue</button>
+      </footer>
+    </section>
+
+    <section class="pane" id="outPane">
+      <header class="pane-head"><span id="outTitle">OUTPUT</span></header>
+      <div id="outList" class="list">
+        <div class="empty" id="outEmpty">
+          <p>No conversions yet</p>
+          <p class="dim">→ LPCM 16-bit / 44.1 kHz</p>
+        </div>
+      </div>
+      <footer class="pane-foot" id="outFoot" hidden>
+        <button class="pill ghost sm" id="btnReveal">Reveal in folder</button>
+      </footer>
+    </section>
+  </main>
+
+  <footer class="bottombar">
+    <div class="dest" id="destBox" title="Choose output folder">
+      <span class="dest-label">Output:</span><span id="destPath">…</span> ▾
+    </div>
+    <label class="ow"><input type="checkbox" id="chkOverwrite"> overwrite</label>
+    <button class="pill go" id="btnConvert" disabled>Convert</button>
+    <button class="pill cancel" id="btnCancel" hidden>Cancel</button>
+  </footer>
+
+  <div class="statusline" id="statusLine" hidden>
+    <div class="gbar"><div id="gbarFill"></div></div>
+    <span id="gbarText"></span>
+  </div>
+</div>
+
+<!-- folder / file browser modal -->
+<dialog id="browser">
+  <header>
+    <button class="pill ghost sm" id="bUp">↑ Up</button>
+    <span id="bPath" class="bpath"></span>
+  </header>
+  <div id="bList" class="blist"></div>
+  <footer>
+    <span id="bHint" class="dim"></span>
+    <span class="spacer"></span>
+    <button class="pill ghost sm" id="bCancel">Cancel</button>
+    <button class="pill go sm" id="bOk">Select</button>
+  </footer>
+</dialog>
+
+<script src="main.js"></script>
+</body>
+</html>

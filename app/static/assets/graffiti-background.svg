@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 900" width="1360" height="900" preserveAspectRatio="xMidYMid slice">
+  <!-- Dark brick wall with static graffiti of the analog-to-digital art (no animation) -->
+  <defs>
+    <pattern id="bricks" width="168" height="96" patternUnits="userSpaceOnUse">
+      <rect width="168" height="96" fill="#221D1A"/>
+      <rect x="2" y="2" width="80" height="44" rx="3" fill="#37302B"/>
+      <rect x="86" y="2" width="80" height="44" rx="3" fill="#332D28"/>
+      <rect x="-40" y="50" width="80" height="44" rx="3" fill="#342E29"/>
+      <rect x="44" y="50" width="80" height="44" rx="3" fill="#38312C"/>
+      <rect x="128" y="50" width="80" height="44" rx="3" fill="#322C27"/>
+    </pattern>
+    <radialGradient id="dimlight" cx="0.5" cy="0.32" r="0.85">
+      <stop offset="0" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="0.6" stop-color="#000000" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.72"/>
+    </radialGradient>
+  </defs>
+  <rect width="1360" height="900" fill="url(#bricks)"/>
+
+  <!-- spray halo pass (soft white underlayer) -->
+  <g fill="none" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M60 450 q 90 -160 180 0 t 180 0 t 180 0"/>
+    <path d="M800 470 h40 v-70 h40 v40 h40 v-90 h40 v70 h40 v-30 h40 v60 h40 v-40 h40 v30 h40"/>
+    <path d="M215 255 v-70 q 30 6 44 26"/>
+  </g>
+
+  <!-- graffiti art: static, sprayed strokes -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M60 450 q 90 -160 180 0 t 180 0 t 180 0" stroke="#E08856" stroke-width="7" opacity="0.85"/>
+    <path d="M60 460 q 90 -150 180 8 t 180 -4 t 180 2" stroke="#B36844" stroke-width="4" opacity="0.5"/>
+    <g stroke="#D8D2C4" stroke-width="6" opacity="0.8">
+      <ellipse cx="200" cy="260" rx="16" ry="12" transform="rotate(-15 200 260)"/>
+      <path d="M215 255 v-70 q 30 6 44 26"/>
+      <ellipse cx="380" cy="200" rx="13" ry="10" transform="rotate(-15 380 200)"/>
+      <path d="M392 196 v-58"/>
+    </g>
+    <g stroke="#9B968A" stroke-width="6" opacity="0.75">
+      <path d="M672 450 h 66" stroke-dasharray="10 14"/>
+      <path d="M730 434 l 22 16 l -22 16"/>
+    </g>
+    <path d="M800 470 h40 v-70 h40 v40 h40 v-90 h40 v70 h40 v-30 h40 v60 h40 v-40 h40 v30 h40"
+          stroke="#7FD6B8" stroke-width="7" opacity="0.85"/>
+    <g fill="#E08856" stroke="none" opacity="0.8">
+      <circle cx="840" cy="400" r="8"/>
+      <circle cx="920" cy="440" r="8"/>
+      <circle cx="1000" cy="350" r="8"/>
+      <circle cx="1080" cy="420" r="8"/>
+    </g>
+  </g>
+  <g font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="32" fill="#D8D2C4" opacity="0.5">
+    <text x="880" y="580">0 1 1 0 1</text>
+    <text x="1040" y="640">1 0 0 1</text>
+    <text x="120" y="640">&#9833; &#9834; &#9835;</text>
+  </g>
+
+  <!-- drips -->
+  <g stroke="#E08856" stroke-width="4" stroke-linecap="round" opacity="0.5">
+    <path d="M240 452 v 34"/><path d="M600 452 v 22"/>
+  </g>
+  <g stroke="#7FD6B8" stroke-width="4" stroke-linecap="round" opacity="0.5">
+    <path d="M960 470 v 30"/><path d="M1120 460 v 20"/>
+  </g>
+
+  <!-- dim studio vignette -->
+  <rect width="1360" height="900" fill="url(#dimlight)"/>
+</svg>
